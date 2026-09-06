@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.wav binary
+*.mp3 binary
+*.flac binary
+*.mp4 binary
+*.onnx binary
+*.gguf binary
+*.safetensors binary
+
+# Keep generated lockfiles out of diffs and language stats.
+package-lock.json linguist-generated=true -diff
+pnpm-lock.yaml    linguist-generated=true -diff
+uv.lock           linguist-generated=true -diff
+poetry.lock       linguist-generated=true -diff

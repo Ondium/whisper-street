@@ -1,0 +1,17 @@
+version: 2
+
+updates:
+  # GitHub Actions are a supply-chain surface for every workflow run.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "ci"
+    labels:
+      - dependencies
+      - ci
+
+  # Add `pip` and `npm` entries here once the prototype's manifests land.
+  # Dependabot logs an error for an ecosystem whose manifest does not exist,
+  # so these are deliberately not pre-declared.

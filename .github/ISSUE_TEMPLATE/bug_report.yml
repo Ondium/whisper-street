@@ -1,0 +1,103 @@
+name: 🐛 Bug report
+description: Something behaves incorrectly, crashes, or produces a bad result.
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing this. Reproduction details are the difference between a
+        bug we can fix today and one that sits for months.
+
+        **Do not attach audio containing identifiable voices without the
+        speaker's consent, or media you can't redistribute.** Describing the
+        audio is usually enough — see the "audio characteristics" field below.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you observe, and what did you expect instead?
+      placeholder: |
+        Expected: ...
+        Actual: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: The exact commands, request, or tool call — including the configuration used.
+      placeholder: |
+        1. Run `...`
+        2. With config `...`
+        3. Observe `...`
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: audio
+    attributes:
+      label: Audio characteristics
+      description: >
+        If the bug depends on the input, describe it: duration, sample rate,
+        codec/container, number of speakers, overlapping speech, background
+        noise or music, language(s), recording setup. If you have a
+        redistributable clip that reproduces it, link it.
+      placeholder: |
+        ~4 min, 44.1 kHz stereo m4a, 3 speakers with frequent overlap,
+        café background noise, English with one non-native speaker.
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs, errors, or output
+      description: Full traceback or error output. Redact anything sensitive.
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: >
+        Version or commit, operating system, runtime versions, hardware
+        (CPU/GPU and which), and which models/backends were in use.
+      placeholder: |
+        whisper-street: v0.1.0 (or commit abc1234)
+        OS: Ubuntu 24.04
+        Hardware: RTX 4070, 12 GB
+        Models/backends: ...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: interface
+    attributes:
+      label: Which interface?
+      multiple: true
+      options:
+        - CLI
+        - HTTP API
+        - MCP server
+        - Web app / site
+        - Used as a library
+        - Not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true
+        - label: This is not a security vulnerability (those go to SECURITY.md).
+          required: true
+        - label: Any audio or transcripts I've attached are mine to share.
+          required: true

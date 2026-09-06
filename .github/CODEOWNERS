@@ -1,0 +1,25 @@
+# Code owners are requested for review automatically on matching paths.
+# See https://docs.github.com/articles/about-code-owners
+#
+# Maintainers are listed in GOVERNANCE.md.
+
+# Default owner for everything not matched below.
+*                       @Ondium
+
+# Contracts other people build on — changes here need maintainer sign-off.
+/docs/api/              @Ondium
+/docs/mcp/              @Ondium
+/AGENTS.md              @Ondium
+/CLAUDE.md              @Ondium
+/llms.txt               @Ondium
+
+# Project process and governance.
+/CONTRIBUTING.md        @Ondium
+/CODE_OF_CONDUCT.md     @Ondium
+/GOVERNANCE.md          @Ondium
+/SECURITY.md            @Ondium
+/LICENSE                @Ondium
+
+# Supply chain and release.
+/.github/workflows/     @Ondium
+/.github/CODEOWNERS     @Ondium

@@ -22,21 +22,50 @@ ROOT = Path(__file__).resolve().parents[2]
 # Formats that must never be committed. Small, license-clear fixtures under
 # tests/fixtures/ are the one exception (see CONTRIBUTING.md).
 FORBIDDEN_SUFFIXES = {
-    ".wav", ".mp3", ".m4a", ".flac", ".ogg", ".opus", ".aac",
-    ".mp4", ".mkv", ".webm", ".mov",
-    ".bin", ".pt", ".pth", ".onnx", ".ggml", ".gguf", ".safetensors", ".ckpt",
-    ".pem", ".key", ".p12", ".pfx",
+    ".wav",
+    ".mp3",
+    ".m4a",
+    ".flac",
+    ".ogg",
+    ".opus",
+    ".aac",
+    ".mp4",
+    ".mkv",
+    ".webm",
+    ".mov",
+    ".bin",
+    ".pt",
+    ".pth",
+    ".onnx",
+    ".ggml",
+    ".gguf",
+    ".safetensors",
+    ".ckpt",
+    ".pem",
+    ".key",
+    ".p12",
+    ".pfx",
 }
 FORBIDDEN_EXEMPT_PREFIXES = ("tests/fixtures/",)
 FORBIDDEN_NAMES = {".env", "credentials.json", "id_rsa", "id_ed25519"}
 
 REQUIRED_DOCS = [
-    "README.md", "LICENSE", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md",
-    "SECURITY.md", "GOVERNANCE.md", "CHANGELOG.md", "AGENTS.md",
-    "CLAUDE.md", "llms.txt",
-    ".github/PULL_REQUEST_TEMPLATE.md", ".github/CODEOWNERS",
-    "docs/README.md", "docs/architecture.md",
-    "docs/api/README.md", "docs/mcp/README.md",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md",
+    "CODE_OF_CONDUCT.md",
+    "SECURITY.md",
+    "GOVERNANCE.md",
+    "CHANGELOG.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "llms.txt",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/CODEOWNERS",
+    "docs/README.md",
+    "docs/architecture.md",
+    "docs/api/README.md",
+    "docs/mcp/README.md",
 ]
 
 LINK_RE = re.compile(r"(?<!\!)\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")

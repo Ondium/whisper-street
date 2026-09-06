@@ -61,6 +61,12 @@ Audio arrives either as a multipart upload or as a URL the server fetches.
 > that it is *disabled by default*, and that when enabled the operator supplies
 > an allowlist. This must be documented prominently in deployment docs.
 
+> **Current implementation note.** The v0 scaffold accepts a JSON submission —
+> an opaque `audio` field or a `source_url` — rather than a real multipart
+> upload, because `python-multipart` is intentionally not a dependency while
+> the audio path is fully stubbed. Real multipart upload lands in
+> [Phase 1 of the roadmap](../ROADMAP.md#phase-1-import-the-prototype-engine).
+
 A submission carries: the audio, the pipeline configuration (models, isolation
 settings, whether diarization runs, timestamp granularity, expected language),
 the desired output formats, and an optional webhook for completion.

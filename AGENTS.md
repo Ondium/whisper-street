@@ -40,7 +40,25 @@ It is consumed three ways: a CLI, an [HTTP API](docs/api/README.md), and an
 └── .github/             issue/PR templates, CODEOWNERS, workflows
 ```
 
-Source layout: _TBD — lands with the prototype import._
+Source layout:
+
+```
+src/whisper_street/
+├── core/      types, stage protocols, and canonical JSON/SRT/VTT rendering
+├── stages/    per-stage implementations — ingest, isolate, segment,
+│              transcribe, emit — all currently typed stubs (see below)
+├── api/       FastAPI app, /v1 routers, and an in-memory job store
+└── cli/       command-line entry point
+tests/         mirrors the src/ layout above
+packages/
+└── mcp-server/  TypeScript MCP server — a thin client over the HTTP API
+Dockerfile     packages the HTTP API service (src/whisper_street/api) only
+```
+
+The stages in `stages/` satisfy their `core/stages.py` contracts but do not do
+real audio work yet — no transcription engine is wired in. See
+[docs/ROADMAP.md](docs/ROADMAP.md#phase-1-import-the-prototype-engine) for
+when that lands.
 
 ## Non-negotiable rules
 
@@ -82,8 +100,19 @@ Run these before proposing any change. Do not rely on CI to discover problems
 you could have found locally.
 
 ```
-# TBD — lands with the prototype import.
-# This block will contain the exact install, lint, typecheck, and test commands.
+# Python
+pip install -e ".[dev]"
+ruff check .
+ruff format --check .
+mypy src tests
+pytest -q
+
+# TypeScript (MCP server)
+npm install
+npm run lint
+npm run typecheck
+npm run build
+npm run test
 ```
 
 Whatever the eventual commands, the standard is the same:

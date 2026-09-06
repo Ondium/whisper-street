@@ -16,6 +16,7 @@ behaviour.
 
 - [README](https://github.com/Ondium/whisper-street/blob/main/README.md): What the project is, the pipeline shape, and where everything lives. (draft)
 - [Architecture](https://github.com/Ondium/whisper-street/blob/main/docs/architecture.md): The pipeline stages — ingest, isolate, segment, transcribe, emit — and the contract each one holds. (draft)
+- [Roadmap](https://github.com/Ondium/whisper-street/blob/main/docs/ROADMAP.md): Phased plan from the current typed stub scaffold to a released v1 — engine import, benchmarks, contract freeze.
 
 ## For agents and automated tools
 

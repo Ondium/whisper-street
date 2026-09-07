@@ -1,0 +1,56 @@
+name: 📖 Documentation problem
+description: Something in the docs is wrong, missing, unclear, or out of date.
+labels: ["documentation", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation issues are real issues here. This project aims to be
+        readable by people *and* by agents and automated tooling — if something
+        was ambiguous to you, it's likely ambiguous to them.
+
+        Small fixes don't need an issue at all: send the pull request directly.
+
+  - type: input
+    id: location
+    attributes:
+      label: Where?
+      description: File path, URL, or docstring.
+      placeholder: docs/mcp/README.md, "Tool surface" section
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - Factually wrong
+        - Out of date — the code has changed
+        - Missing entirely
+        - Unclear or ambiguous
+        - Example doesn't work
+        - Broken link
+        - Hard for an agent or tool to parse reliably
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: What's wrong, and what would be right?
+      description: If you know the correct answer, say it — that turns this into a one-line fix.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reader
+    attributes:
+      label: Who were you reading as?
+      options:
+        - A human evaluating the project
+        - A human contributing to it
+        - A human operating a deployment
+        - An AI agent or automated tool
+    validations:
+      required: false

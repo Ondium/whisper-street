@@ -1,0 +1,78 @@
+# ---- Secrets & local config -------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.*
+
+# ---- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.tox/
+.nox/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# ---- Node / TypeScript ------------------------------------------------------
+node_modules/
+.npm/
+.pnpm-store/
+*.tsbuildinfo
+.next/
+.turbo/
+.cache/
+coverage/
+
+# ---- Models & weights (never commit; fetch at runtime) ----------------------
+models/
+weights/
+*.bin
+*.pt
+*.pth
+*.onnx
+*.ggml
+*.gguf
+*.safetensors
+
+# ---- Media fixtures & pipeline output ---------------------------------------
+# Small, license-clear test clips belong in tests/fixtures/ and must be
+# force-added (git add -f). Everything else stays out of git.
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+*.opus
+*.mp4
+*.mkv
+*.webm
+!tests/fixtures/**
+out/
+output/
+transcripts/
+*.srt
+*.vtt
+!docs/**/*.srt
+!docs/**/*.vtt
+
+# ---- Editors & OS -----------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.shared.json
+*.swp

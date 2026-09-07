@@ -1,0 +1,45 @@
+# whisper-street
+
+> Voice isolation and transcription. Takes messy real-world audio — overlapping
+> speakers, background noise, music beds, poor microphones — separates the speech
+> from everything else, and produces accurate, timed, speaker-aware transcripts.
+> Usable by people (CLI, web), by agents (MCP server), and by platforms (HTTP
+> API). MIT licensed, maintained by Ondium, open to outside contribution.
+
+The repository is in early public migration from a working local prototype.
+Documents below marked (design) describe intended contracts under active
+discussion; documents marked (draft) will be reconciled against the prototype
+source as it is imported. Do not treat either as a description of shipped
+behaviour.
+
+## Start here
+
+- [README](https://github.com/Ondium/whisper-street/blob/main/README.md): What the project is, the pipeline shape, and where everything lives. (draft)
+- [Architecture](https://github.com/Ondium/whisper-street/blob/main/docs/architecture.md): The pipeline stages — ingest, isolate, segment, transcribe, emit — and the contract each one holds. (draft)
+- [Roadmap](https://github.com/Ondium/whisper-street/blob/main/docs/ROADMAP.md): Phased plan from the current typed stub scaffold to a released v1 — engine import, benchmarks, contract freeze.
+
+## For agents and automated tools
+
+- [AGENTS.md](https://github.com/Ondium/whisper-street/blob/main/AGENTS.md): Canonical instructions for AI agents working in this repository: rules, verification standards, documentation conventions, PR expectations.
+- [CLAUDE.md](https://github.com/Ondium/whisper-street/blob/main/CLAUDE.md): Pointer to AGENTS.md.
+- [MCP server](https://github.com/Ondium/whisper-street/blob/main/docs/mcp/README.md): Tool surface exposing the pipeline to LLMs and agents — tool names, arguments, return shapes, and long-running job handling. (design)
+
+## For platform integration
+
+- [HTTP API](https://github.com/Ondium/whisper-street/blob/main/docs/api/README.md): Versioned REST surface for enterprise and platform integration, including async job handling, limits, and compatibility guarantees. (design)
+
+## Contributing
+
+- [Contributing guide](https://github.com/Ondium/whisper-street/blob/main/CONTRIBUTING.md): How to propose, build, verify, and submit a change. Includes the evidence standard for accuracy and performance claims, and the policy on agent-authored contributions.
+- [Governance](https://github.com/Ondium/whisper-street/blob/main/GOVERNANCE.md): Roles, how decisions get made, compatibility promises, release process.
+- [Code of Conduct](https://github.com/Ondium/whisper-street/blob/main/CODE_OF_CONDUCT.md): Contributor Covenant 2.1.
+- [Changelog](https://github.com/Ondium/whisper-street/blob/main/CHANGELOG.md): Notable changes, Keep a Changelog format, derived from Conventional Commits.
+
+## Security and licensing
+
+- [Security policy](https://github.com/Ondium/whisper-street/blob/main/SECURITY.md): Private disclosure process, response targets, and this project's threat surface — media decoding, model deserialization, subprocess invocation, resource exhaustion, and the sensitivity of voice data.
+- [License](https://github.com/Ondium/whisper-street/blob/main/LICENSE): MIT. Note that models the project can drive are licensed separately by their authors.
+
+## Optional
+
+- [Issue templates](https://github.com/Ondium/whisper-street/tree/main/.github/ISSUE_TEMPLATE): Structured forms for bug reports, proposals, and documentation problems.

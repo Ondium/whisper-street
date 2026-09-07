@@ -1,0 +1,13 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Report a security vulnerability
+    url: https://github.com/Ondium/whisper-street/security/advisories/new
+    about: Please report vulnerabilities privately, never as a public issue. See SECURITY.md.
+  # Uncomment once GitHub Discussions is enabled for this repository
+  # (Settings → General → Features → Discussions).
+  # - name: 💬 Ask a question or share an idea
+  #   url: https://github.com/Ondium/whisper-street/discussions
+  #   about: For open-ended questions and ideas that aren't yet a concrete bug or proposal.
+  - name: 📖 Read the contributing guide
+    url: https://github.com/Ondium/whisper-street/blob/main/CONTRIBUTING.md
+    about: How to set up, make a change, and get it reviewed.

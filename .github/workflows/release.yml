@@ -1,0 +1,140 @@
+# This workflow is intentionally manual (workflow_dispatch only) until v1.
+# There is no engine yet (see docs/ROADMAP.md) and no released contract to
+# protect, so nothing here should run on a schedule or in response to a push
+# or pull request. Phase 3 of docs/ROADMAP.md flips this toward real triggers.
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release (SemVer, e.g. 0.2.0)"
+        required: true
+        type: string
+
+# Least privilege by default; individual jobs elevate only what they need.
+permissions:
+  contents: read
+
+jobs:
+  verify-version:
+    name: Verify version matches manifests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check pyproject.toml and package.json agree with the input
+        run: |
+          set -euo pipefail
+          version="${{ inputs.version }}"
+
+          py_version=$(python3 -c "
+          import tomllib
+          with open('pyproject.toml', 'rb') as f:
+              print(tomllib.load(f)['project']['version'])
+          ")
+          if [ "$py_version" != "$version" ]; then
+            echo "::error::pyproject.toml version ($py_version) != inputs.version ($version)"
+            exit 1
+          fi
+
+          node_version=$(node -p "require('./packages/mcp-server/package.json').version")
+          if [ "$node_version" != "$version" ]; then
+            echo "::error::packages/mcp-server/package.json version ($node_version) != inputs.version ($version)"
+            exit 1
+          fi
+
+          echo "Manifests agree: $version"
+
+  build-python:
+    name: Build Python distribution
+    needs: verify-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+          python -m build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-dist
+          path: dist/
+
+  build-node:
+    name: Build MCP server package
+    needs: verify-version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build and pack
+        run: |
+          npm ci
+          npm run build -w packages/mcp-server
+          npm pack -w packages/mcp-server
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: node-package
+          path: "*.tgz"
+
+  build-and-push-image:
+    name: Build and push container image
+    needs: verify-version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/ondium/whisper-street:${{ inputs.version }}
+            ghcr.io/ondium/whisper-street:latest
+
+  create-release:
+    name: Create GitHub release
+    needs: [build-python, build-node, build-and-push-image]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Create release with build artifacts attached
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v${{ inputs.version }}" \
+            --title "v${{ inputs.version }}" \
+            --generate-notes \
+            artifacts/python-dist/* \
+            artifacts/node-package/*

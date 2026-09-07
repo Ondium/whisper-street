@@ -1,0 +1,30 @@
+{
+  "name": "whisper-street-mcp",
+  "version": "0.1.0",
+  "description": "MCP server exposing whisper-street's HTTP API as typed tools for LLM agents.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "whisper-street-mcp": "./dist/src/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && cd dist && node --test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1",
+    "zod": "^3"
+  },
+  "devDependencies": {
+    "typescript": "^5.6",
+    "@types/node": "^20",
+    "eslint": "^9",
+    "@typescript-eslint/parser": "^8",
+    "@typescript-eslint/eslint-plugin": "^8"
+  }
+}

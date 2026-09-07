@@ -1,0 +1,92 @@
+name: ✨ Feature request or proposal
+description: Propose a capability, a pipeline stage, an integration, or a change of shape.
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals are welcome — this project is open specifically to take in
+        ideas from outside. For anything that changes a public contract (the
+        HTTP API, the MCP tool surface, output schemas), please read
+        [GOVERNANCE.md](https://github.com/Ondium/whisper-street/blob/main/GOVERNANCE.md#proposing-significant-changes)
+        first.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: >
+        Describe the problem, not the solution. What are you trying to do that
+        you currently can't, and what do you do instead today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What you'd like to see. Sketch the interface if you have one in mind.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: >
+        What else could solve this, and why is this better? "I considered X and
+        rejected it because Y" is one of the most useful things in a proposal.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area does this touch?
+      multiple: true
+      options:
+        - Ingest / decoding
+        - Voice isolation / separation
+        - Segmentation / VAD / diarization
+        - Transcription accuracy
+        - Output formats
+        - Performance / cost
+        - CLI
+        - HTTP API
+        - MCP / agent integration
+        - Documentation
+        - Build, CI, or release
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      options:
+        - Purely additive — nothing existing changes
+        - Changes default behaviour, but no interface breaks
+        - Breaking change to a public contract
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: contributing
+    attributes:
+      label: Would you like to implement this?
+      options:
+        - "Yes, I'd like to work on it"
+        - "Yes, but I'd need guidance to start"
+        - "No, I'm proposing it for someone else to pick up"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched existing issues and this isn't a duplicate.
+          required: true

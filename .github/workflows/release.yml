@@ -63,7 +63,7 @@ jobs:
           pip install build
           python -m build
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: python-dist
           path: dist/
@@ -85,7 +85,7 @@ jobs:
           npm run build -w packages/mcp-server
           npm pack -w packages/mcp-server
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: node-package
           path: "*.tgz"
